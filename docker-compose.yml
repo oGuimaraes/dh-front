@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  app:
+    build: .
+    env_file:
+      - ./.env
+    tty: true
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - CHOKIDAR_USEPOLLING='true'
+    ports:
+      - '${PORT:-3000}:${PORT:-3000}'
+    volumes:
+      - ./:/home/node/app
+      - node_modules:/home/node/app/node_modules
+
+volumes:
+  node_modules:
+
+networks:
+  default:
+    name: clinica
