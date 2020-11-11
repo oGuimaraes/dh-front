@@ -14,26 +14,16 @@ export default function Entities(props) {
   /* Fazer requisição e setar data com os valores obtidos */
   useEffect(() => {
     async function loadUsers() {
-      await api.get('/entities/').then((res) => setData(res.data));
+      await api.get('/entities/').then((res) => setData(res.data.results));
     }
     loadUsers();
   }, []);
 
   /* Declarar valores que irão no header */
-  const header = [
-    'Nome',
-    'Eixos',
-    'Ente Administrativo',
-    'Contato',
-  ];
+  const header = ['Nome', 'Eixos', 'Ente Administrativo', 'Contato'];
 
   /* Declarar nome dos atributos que irão no header */
-  const attributesToView = [
-    'name',
-    'axis',
-    'entity_liked',
-    'contact',
-  ];
+  const attributesToView = ['name', 'axis', 'entity_liked', 'contact'];
 
   let mode = useSelector((state) => state.view.mode);
   let entitySelected = useSelector((state) => state.entities.entitySelected);

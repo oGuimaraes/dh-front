@@ -77,7 +77,7 @@ const _01_part = (props) => {
       <Container>
         <Form onSubmit={handleSubmit}>
           <Grid justify="space-around" container spacing={3}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <FormControl>
                 <InputLabel id="demo-customized-select-label">
                   Área Relacionada
@@ -100,7 +100,7 @@ const _01_part = (props) => {
               </FormControl>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -112,7 +112,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -124,7 +124,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -136,7 +136,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <FormControl>
                 <InputLabel id="demo-customized-select-label">Eixo</InputLabel>
                 <Select
@@ -161,7 +161,7 @@ const _01_part = (props) => {
               </FormControl>
             </Grid>
 
-            <Grid item xs={6} className="centerGrid">
+            <Grid item xs={12} sm={6} className="centerGrid">
               <TextField
                 variant="outlined"
                 size="small"
@@ -173,7 +173,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"

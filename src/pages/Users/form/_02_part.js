@@ -15,12 +15,11 @@ class _02_part extends Component {
 
   render() {
     const { values } = this.props;
-    console.log(values);
 
     return (
       <Form onSubmit={this.saveAndContinue}>
         <Grid justify="space-around" container spacing={3}>
-          <Grid item xs={8}>
+          <Grid item xs={12} sm={12} md={8}>
             <TextField
               variant="outlined"
               size="small"
@@ -31,7 +30,7 @@ class _02_part extends Component {
             />
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -43,7 +42,7 @@ class _02_part extends Component {
             />
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -54,7 +53,7 @@ class _02_part extends Component {
             />
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -65,7 +64,7 @@ class _02_part extends Component {
             />
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -76,7 +75,7 @@ class _02_part extends Component {
             />
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -87,7 +86,7 @@ class _02_part extends Component {
             />
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"

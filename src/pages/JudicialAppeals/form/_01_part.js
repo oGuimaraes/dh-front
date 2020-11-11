@@ -57,7 +57,7 @@ const _01_part = (props) => {
       <Container>
         <Form onSubmit={handleSubmit}>
           <Grid justify="space-around" container spacing={3}>
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -69,19 +69,19 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
                 name="judicial_appeal_number"
                 onChange={props.handleChange('judicial_appeal_number')}
                 value={values.judicial_appeal_number}
-                label= "Número do Recurso"
+                label="Número do Recurso"
               />
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -93,7 +93,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6} className="centerGrid">
+            <Grid item xs={12} sm={6} className="centerGrid">
               <TextField
                 variant="outlined"
                 size="small"
@@ -105,20 +105,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
-              <TextField
-                variant="outlined"
-                size="small"
-                name="resume"
-                onChange={props.handleChange('resume')}
-                value={values.resume}
-                label="Resumo"
-              />
-              <FormHelperText>{}</FormHelperText>
-            </Grid>
-
-
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={12} md={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -126,6 +113,20 @@ const _01_part = (props) => {
                 onChange={props.handleChange('law_suit')}
                 value={values.law_suit}
                 label="Processo relacionado"
+              />
+              <FormHelperText>{}</FormHelperText>
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="resume"
+                multiline
+                rows={3}
+                onChange={props.handleChange('resume')}
+                value={values.resume}
+                label="Resumo"
               />
               <FormHelperText>{}</FormHelperText>
             </Grid>

@@ -148,7 +148,7 @@ const _01_part = (props) => {
     async function loadUsers() {
       await api.get('/accounts/').then(
         (res) =>
-          res.data.map((user) => {
+          res.data.results.map((user) => {
             const cleanUser = { name: user.name, id: user.id };
             infoUsers.push(cleanUser);
           }),
@@ -159,7 +159,7 @@ const _01_part = (props) => {
     async function loadPeople() {
       await api.get('/people/').then(
         (res) =>
-          res.data.map((person) => {
+          res.data.results.map((person) => {
             const cleanPerson = { name: person.full_name, id: person.id };
             infoPeople.push(cleanPerson);
           }),
@@ -168,7 +168,7 @@ const _01_part = (props) => {
     }
 
     async function getAxes() {
-      await api.get('/axes/').then((res) => setAxes(res.data));
+      await api.get('/axes/').then((res) => setAxes(res.data.results));
     }
 
     loadUsers();
@@ -181,7 +181,7 @@ const _01_part = (props) => {
       <Container>
         <Form onSubmit={handleSubmit}>
           <Grid justify="space-around" container spacing={3}>
-            <Grid item xs={6} className="brotherOfAutoselect">
+            <Grid item xs={12} sm={6} className="brotherOfAutoselect">
               <FormControl>
                 <InputLabel id="demo-customized-select-label">
                   Área Relacionada
@@ -207,7 +207,7 @@ const _01_part = (props) => {
               <FormHelperText>{relatedAreasError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <InputAutoComplete
                 label={'Pessoa Assistida'}
                 data={assistedPerson}
@@ -218,7 +218,7 @@ const _01_part = (props) => {
               <FormHelperText>{internError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <InputAutoComplete
                 label={'Orientador Responsável'}
                 data={users}
@@ -229,7 +229,7 @@ const _01_part = (props) => {
               <FormHelperText>{advisorError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <InputAutoComplete
                 label={'Estagiário Responsável'}
                 data={users}
@@ -240,7 +240,7 @@ const _01_part = (props) => {
               <FormHelperText>{internError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <FormControl>
                 <InputLabel id="demo-customized-select-label">Eixo</InputLabel>
                 <Select
@@ -269,7 +269,7 @@ const _01_part = (props) => {
               <FormHelperText>{axiesError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6} className="centerGrid">
+            <Grid item xs={12} sm={6} className="centerGrid">
               <TextField
                 variant="outlined"
                 size="small"
@@ -280,7 +280,7 @@ const _01_part = (props) => {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -292,7 +292,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -304,7 +304,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -316,7 +316,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -328,7 +328,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -340,7 +340,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -366,7 +366,7 @@ const _01_part = (props) => {
               <FormHelperText>{reportError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -377,7 +377,7 @@ const _01_part = (props) => {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -389,7 +389,7 @@ const _01_part = (props) => {
               <FormHelperText>{registrationDateError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"

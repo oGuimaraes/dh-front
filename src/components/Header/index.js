@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Gravatar from 'react-gravatar';
 import { useSelector } from 'react-redux';
@@ -15,12 +15,20 @@ import { receiveNotification } from '../../store/modules/notification/actions';
 
 let ws;
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+}
+
 export default function Header() {
   const dispatch = useDispatch();
   const currentUserId = useSelector((state) => state.auth.user.id);
 
   useEffect(() => {
-    ws = new WebSocket('ws://dh-ufmg.herokuapp.com/notifications/');
+    ws = new WebSocket('wss://dh-ufmg.herokuapp.com/notifications/');
 
     ws.onmessage = (evt) => {
       const notification = JSON.parse(evt.data);
@@ -39,6 +47,19 @@ export default function Header() {
     dispatch(changeView('table'));
   };
 
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <Container>
       <Content>
@@ -49,17 +70,19 @@ export default function Header() {
           <Menu />
         </nav>
 
-        <nav>
-          <Link to="/usuarios" onClick={setView()}>
-            USUÁRIOS
-          </Link>
-          <Link to="/casos" onClick={setView()}>
-            CASOS
-          </Link>
-          <Link to="/pessoas" onClick={setView()}>
-            PESSOAS
-          </Link>
-        </nav>
+        {getWindowDimensions().width > 800 && (
+          <nav>
+            <Link to="/usuarios" onClick={setView()}>
+              USUÁRIOS
+            </Link>
+            <Link to="/casos" onClick={setView()}>
+              CASOS
+            </Link>
+            <Link to="/pessoas" onClick={setView()}>
+              PESSOAS
+            </Link>
+          </nav>
+        )}
 
         <aside>
           <Notification />

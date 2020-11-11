@@ -16,10 +16,14 @@ import TextField from '@material-ui/core/TextField';
 import InputAutoComplete from '../../../components/InputAutocomplete';
 import api from '../../../services/api';
 
+/* Imports Datapicker */
+import Datapicker from '../../../components/Datapicker';
+
 import {
   updateResponsible,
   updateDocuments,
   updateCases,
+  updateDeadlineDatapicker,
 } from '../../../store/modules/task/actions';
 
 const BootstrapInput = withStyles((theme) => ({
@@ -53,13 +57,21 @@ const _01_part = (props) => {
 
   const validate = () => {};
 
+  /* Get the values ​​of the State's Selects and Datapicker (Redux) */
+
+  const responsible = useSelector((state) => state.tasks.newTask.responsible);
+  const documentsState = useSelector((state) => state.tasks.newTask.documents);
+  const casesState = useSelector((state) => state.tasks.newTask.cases);
+  const datapickerState = useSelector(
+    (state) => state.tasks.updateDate.deadline
+  );
   const handleSubmit = (e) => {
     const err = validate();
     if (!err) {
       values.responsible = responsible;
       values.document_task = documentsState;
       values.case_tasks = casesState;
-      console.log(values);
+      values.deadline = datapickerState;
       dispatch(createTaskRequest(values));
     }
   };
@@ -75,7 +87,7 @@ const _01_part = (props) => {
 
     async function loadUsers() {
       await api.get('/accounts/').then((res) =>
-        res.data.map((user) => {
+        res.data.results.map((user) => {
           const cleanUser = { name: user.name, id: user.id };
           usersInfo.push(cleanUser);
         })
@@ -87,7 +99,7 @@ const _01_part = (props) => {
 
     async function loadDocuments() {
       await api.get('/documents/').then((res) =>
-        res.data.map((document) => {
+        res.data.results.map((document) => {
           const cleanDocument = {
             id: document.id,
             name: 'Documento nº ' + document.id,
@@ -102,7 +114,7 @@ const _01_part = (props) => {
 
     async function loadCases() {
       await api.get('/cases/').then((res) =>
-        res.data.map((aCase) => {
+        res.data.results.map((aCase) => {
           const cleanCase = {
             id: aCase.id,
             name: 'Caso nº' + aCase.id,
@@ -120,16 +132,12 @@ const _01_part = (props) => {
     loadCases();
   }, []);
 
-  const responsible = useSelector((state) => state.tasks.newTask.responsible);
-  const documentsState = useSelector((state) => state.tasks.newTask.documents);
-  const casesState = useSelector((state) => state.tasks.newTask.cases);
-
   return (
     <>
       <Container>
         <Form onSubmit={handleSubmit}>
           <Grid justify="space-around" container spacing={3}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -141,19 +149,14 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
-              <TextField
-                variant="outlined"
-                size="small"
-                name="deadline"
-                onChange={props.handleChange('deadline')}
-                value={values.deadline}
+            <Grid item xs={12} sm={6}>
+              <Datapicker
                 label="Prazo"
+                dispatchAction={updateDeadlineDatapicker}
               />
-              <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6} className="brotherOfAutoselect">
+            <Grid item xs={12} sm={6} sm={12} className="brotherOfAutoselect">
               <TextField
                 id="outlined-multiline-static"
                 label="Descrição"
@@ -167,7 +170,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <InputAutoComplete
                 label={'Responsável'}
                 data={users}
@@ -178,7 +181,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <InputAutoComplete
                 label={'Documentos'}
                 data={documents}
@@ -189,7 +192,7 @@ const _01_part = (props) => {
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <InputAutoComplete
                 label={'Casos'}
                 data={cases}

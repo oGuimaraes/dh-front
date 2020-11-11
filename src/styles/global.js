@@ -39,7 +39,7 @@ export default createGlobalStyle`
   }
 
   button {
-    cursos: pointer;
+    cursor: pointer;
   }
 
   .Toastify__toast--error {
@@ -173,7 +173,29 @@ export default createGlobalStyle`
 
   .MuiOutlinedInput-multiline {
     background: rgba(255,255,255,0.4) !important;
+    margin-top: 0 !important;
   }
 
+  .makeStyles-textField-10 {
+    margin: 0 !important;
+  }
 
+  .MuiOutlinedInput-multiline {
+    background: rgba(255,255,255,0.4) !important;
+    margin-top: 0 !important;
+  }
+
+  .MuiInputBase-multiline.Mui-disabled {
+    background: rgba(50,50,50,0.10) !important;
+  }
+
+  .checkboxSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .imIwjr svg {
+    font-size: 16px;
+  }
 `;

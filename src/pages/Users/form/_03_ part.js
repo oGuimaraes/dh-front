@@ -26,7 +26,7 @@ export default function _03_part(props) {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid justify="space-around" container spacing={3}>
-        <Grid item xs={8}>
+        <Grid item xs={12} sm={6}>
           <TextField
             variant="outlined"
             size="small"
@@ -37,7 +37,7 @@ export default function _03_part(props) {
           />
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6}>
           <TextField
             variant="outlined"
             size="small"
@@ -48,7 +48,7 @@ export default function _03_part(props) {
           />
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <TextField
             variant="outlined"
             size="small"
@@ -59,7 +59,7 @@ export default function _03_part(props) {
           />
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <TextField
             variant="outlined"
             size="small"
@@ -70,7 +70,7 @@ export default function _03_part(props) {
           />
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <TextField
             variant="outlined"
             size="small"

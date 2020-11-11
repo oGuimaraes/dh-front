@@ -17,7 +17,9 @@ import { withRouter } from 'react-router-dom';
 
 function ViewJudicialAppeal(props) {
   console.log(props);
-  const aJudicialAppeal = useSelector((state) => state.judicialAppeals.judicialAppealSelected);
+  const aJudicialAppeal = useSelector(
+    (state) => state.judicialAppeals.judicialAppealSelected
+  );
   const dispatch = useDispatch();
 
   const [isDisabled, setIsDisabled] = useState(true);
@@ -103,7 +105,7 @@ function ViewJudicialAppeal(props) {
       </ButtonContainer>
       <Container>
         <Grid justify="space-around" container spacing={3}>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -116,7 +118,7 @@ function ViewJudicialAppeal(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -129,7 +131,7 @@ function ViewJudicialAppeal(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -142,7 +144,7 @@ function ViewJudicialAppeal(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -155,20 +157,7 @@ function ViewJudicialAppeal(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
-            <TextField
-              variant="outlined"
-              size="small"
-              name="resume"
-              disabled={isDisabled}
-              onChange={handleChange('resume')}
-              value={state.resume}
-              label="Resumo"
-            />
-            <FormHelperText>{}</FormHelperText>
-          </Grid>
-
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={12} md={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -177,6 +166,21 @@ function ViewJudicialAppeal(props) {
               onChange={handleChange('law_suit')}
               value={state.law_suit}
               label="Processo relacionado"
+            />
+            <FormHelperText>{}</FormHelperText>
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              size="small"
+              name="resume"
+              multiline
+              rows={3}
+              disabled={isDisabled}
+              onChange={handleChange('resume')}
+              value={state.resume}
+              label="Resumo"
             />
             <FormHelperText>{}</FormHelperText>
           </Grid>

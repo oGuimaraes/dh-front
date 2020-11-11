@@ -1,16 +1,12 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
 import { Form } from '@rocketseat/unform';
 import { useDispatch } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { Container, ButtonContainer } from './styles';
 import { createLawSuitRequest } from '../../../store/modules/lawSuit/actions';
-import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import InputBase from '@material-ui/core/InputBase';
 import { withRouter } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
@@ -58,7 +54,7 @@ const _01_part = (props) => {
       <Container>
         <Form onSubmit={handleSubmit}>
           <Grid justify="space-around" container spacing={3}>
-          <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -68,9 +64,9 @@ const _01_part = (props) => {
                 label="Tipo de ação"
               />
               <FormHelperText>{}</FormHelperText>
-          </Grid>
+            </Grid>
 
-          <Grid item xs={3} className="checkboxSection">
+            <Grid item xs={12} sm={6} md={4} className="checkboxSection">
               <span>Mandado de prisão em aberto?</span>
               <Checkbox
                 defaultChecked
@@ -79,9 +75,9 @@ const _01_part = (props) => {
                 onChange={props.handleChange('open_mandate')}
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
               />
-          </Grid>
+            </Grid>
 
-          <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -91,9 +87,9 @@ const _01_part = (props) => {
                 label="Comarca"
               />
               <FormHelperText>{}</FormHelperText>
-          </Grid>
+            </Grid>
 
-          <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -103,9 +99,9 @@ const _01_part = (props) => {
                 label="Área do direito"
               />
               <FormHelperText>{}</FormHelperText>
-          </Grid>
+            </Grid>
 
-          <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -115,9 +111,9 @@ const _01_part = (props) => {
                 label="Últimas movimentações"
               />
               <FormHelperText>{}</FormHelperText>
-          </Grid>
+            </Grid>
 
-          <Grid item xs={3} className="checkboxSection">
+            <Grid item xs={12} sm={6} md={4} className="checkboxSection">
               <span>Possui advogado/defensor constituído nos autos?</span>
               <Checkbox
                 defaultChecked
@@ -126,9 +122,9 @@ const _01_part = (props) => {
                 onChange={props.handleChange('has_lawyer')}
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
               />
-          </Grid>
+            </Grid>
 
-          <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -138,9 +134,9 @@ const _01_part = (props) => {
                 label="Nome advogado/defensor"
               />
               <FormHelperText>{}</FormHelperText>
-          </Grid>
-          
-          <Grid item xs={4}>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -150,9 +146,9 @@ const _01_part = (props) => {
                 label="Contato advogado/defensor"
               />
               <FormHelperText>{}</FormHelperText>
-          </Grid>
+            </Grid>
 
-          <Grid item xs={3} className="checkboxSection">
+            <Grid item xs={12} sm={6} md={4} className="checkboxSection">
               <span>Acompanhado pela DAJ?</span>
               <Checkbox
                 defaultChecked
@@ -161,9 +157,9 @@ const _01_part = (props) => {
                 onChange={props.handleChange('followed_by_daj')}
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
               />
-          </Grid>
+            </Grid>
 
-          <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -173,9 +169,9 @@ const _01_part = (props) => {
                 label="Número MinhaDAJ"
               />
               <FormHelperText>{}</FormHelperText>
-          </Grid>
+            </Grid>
 
-          <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -185,9 +181,9 @@ const _01_part = (props) => {
                 label="Data início [PI/recebimento da denúncia]"
               />
               <FormHelperText>{}</FormHelperText>
-          </Grid>
+            </Grid>
 
-          <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -197,9 +193,9 @@ const _01_part = (props) => {
                 label="Data trânsito em julgado"
               />
               <FormHelperText>{}</FormHelperText>
-          </Grid>
+            </Grid>
 
-          <Grid item xs={4}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -209,10 +205,9 @@ const _01_part = (props) => {
                 label="Pessoas relacionadas"
               />
               <FormHelperText>{}</FormHelperText>
-          </Grid>
+            </Grid>
 
-
-          <Grid item xs={4}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -222,7 +217,7 @@ const _01_part = (props) => {
                 label="Casos relacionados"
               />
               <FormHelperText>{}</FormHelperText>
-          </Grid>
+            </Grid>
           </Grid>
           <ButtonContainer>
             <Grid className="buttonContainer" item xs={12}>

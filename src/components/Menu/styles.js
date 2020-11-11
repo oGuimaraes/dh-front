@@ -67,7 +67,7 @@ export const MenuItem = styled.div`
 `;
 
 export const Scroll = styled.div`
-  max-height: 250px;
+  max-height: 350px;
   padding: 5px 10px;
   text-align: center;
 `;

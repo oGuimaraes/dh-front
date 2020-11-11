@@ -68,3 +68,10 @@ export function emmitPublish(taskID) {
     payload: { taskID },
   };
 }
+
+export function updateDeadlineDatapicker(deadline) {
+  return {
+    type: '@task/UPDATE_DEADLINE_DATAPICKER',
+    payload: { deadline },
+  };
+}

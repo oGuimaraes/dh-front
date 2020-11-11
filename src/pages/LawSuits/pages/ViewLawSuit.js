@@ -38,8 +38,7 @@ function ViewLawSuit(props) {
     start_date,
     transit_date,
     related_person,
-    cases
-
+    cases,
   } = aLawSuit;
 
   const [state, setState] = useState({
@@ -123,7 +122,7 @@ function ViewLawSuit(props) {
       </ButtonContainer>
       <Container>
         <Grid justify="space-around" container spacing={3}>
-                    <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -147,7 +146,7 @@ function ViewLawSuit(props) {
               />
           </Grid> */}
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -160,7 +159,7 @@ function ViewLawSuit(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -173,7 +172,7 @@ function ViewLawSuit(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -186,7 +185,7 @@ function ViewLawSuit(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -210,7 +209,7 @@ function ViewLawSuit(props) {
               />
           </Grid> */}
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -223,7 +222,7 @@ function ViewLawSuit(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -247,7 +246,7 @@ function ViewLawSuit(props) {
               />
           </Grid> */}
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -260,7 +259,7 @@ function ViewLawSuit(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -273,7 +272,7 @@ function ViewLawSuit(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -286,7 +285,7 @@ function ViewLawSuit(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -299,7 +298,7 @@ function ViewLawSuit(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"

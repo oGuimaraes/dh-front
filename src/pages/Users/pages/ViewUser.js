@@ -218,7 +218,7 @@ function ViewUser(props) {
       <Container>
         <Form>
           <Grid justify="space-around" container spacing={3}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 name="name"
@@ -231,7 +231,7 @@ function ViewUser(props) {
               <FormHelperText>{nameError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -245,7 +245,7 @@ function ViewUser(props) {
               <FormHelperText>{emailError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -258,7 +258,7 @@ function ViewUser(props) {
               <FormHelperText>{bondTypeError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -270,7 +270,7 @@ function ViewUser(props) {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={4} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -283,7 +283,7 @@ function ViewUser(props) {
               <FormHelperText>{rgError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={4} md={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -296,7 +296,7 @@ function ViewUser(props) {
               <FormHelperText>{cpfError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={4} md={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -313,7 +313,7 @@ function ViewUser(props) {
               <div style={{ borderBottom: '1px #d1e1e6 dashed' }} />
             </Grid>
 
-            <Grid item xs={8}>
+            <Grid item xs={12} sm={12} md={8}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -325,7 +325,7 @@ function ViewUser(props) {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -338,7 +338,7 @@ function ViewUser(props) {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -350,7 +350,7 @@ function ViewUser(props) {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -362,7 +362,7 @@ function ViewUser(props) {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -374,7 +374,7 @@ function ViewUser(props) {
               />
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -386,7 +386,7 @@ function ViewUser(props) {
               />
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -402,7 +402,7 @@ function ViewUser(props) {
               <div style={{ borderBottom: '1px #d1e1e6 dashed' }} />
             </Grid>
 
-            <Grid item xs={8}>
+            <Grid item xs={12} sm={12} md={8}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -414,7 +414,7 @@ function ViewUser(props) {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -426,7 +426,7 @@ function ViewUser(props) {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -438,7 +438,7 @@ function ViewUser(props) {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -450,7 +450,7 @@ function ViewUser(props) {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"

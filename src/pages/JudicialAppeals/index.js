@@ -14,7 +14,9 @@ export default function JudicialAppeals(props) {
   /* Fazer requisição e setar data com os valores obtidos */
   useEffect(() => {
     async function loadUsers() {
-      await api.get('/judicial_appeals/').then((res) => setData(res.data));
+      await api
+        .get('/judicial_appeals/')
+        .then((res) => setData(res.data.results));
     }
     loadUsers();
   }, []);
@@ -36,7 +38,9 @@ export default function JudicialAppeals(props) {
   ];
 
   let mode = useSelector((state) => state.view.mode);
-  let judicialAppealSelected = useSelector((state) => state.judicialAppeals.judicialAppealSelected);
+  let judicialAppealSelected = useSelector(
+    (state) => state.judicialAppeals.judicialAppealSelected
+  );
 
   let PageContent, Header;
 
@@ -61,7 +65,9 @@ export default function JudicialAppeals(props) {
       PageContent = <ViewJudicialAppeal />;
       Header = (
         <HeaderPage
-          title={judicialAppealSelected ? `Recurso ${judicialAppealSelected.id}` : ''}
+          title={
+            judicialAppealSelected ? `Recurso ${judicialAppealSelected.id}` : ''
+          }
           viewMode
           button
         />

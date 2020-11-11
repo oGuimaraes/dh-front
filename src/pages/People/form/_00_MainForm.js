@@ -6,7 +6,7 @@ import Part4 from './_04_part';
 
 export default class MainForm extends Component {
   state = {
-    step: 1,
+    step: 3,
     street: '1',
     number: 2,
     complement: '3',

@@ -13,7 +13,7 @@ export default function People() {
 
   useEffect(() => {
     async function loadPeople() {
-      await api.get('/people/').then((res) => setData(res.data));
+      await api.get('/people/').then((res) => setData(res.data.results));
     }
     loadPeople();
   }, []);

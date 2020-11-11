@@ -1,7 +1,6 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-  newTask: null,
   taskSelected: {
     title: '',
     deadline: null,
@@ -14,6 +13,9 @@ const INITIAL_STATE = {
     responsible: [],
     documents: [],
     cases: [],
+  },
+  updateDate: {
+    deadline: '',
   },
 };
 
@@ -52,8 +54,11 @@ export default function tasks(state = INITIAL_STATE, action) {
         break;
       }
       case '@task/UPDATE_CASES': {
-        console.log('Action', action.payload.cases);
         draft.newTask.cases = action.payload.cases;
+        break;
+      }
+      case '@task/UPDATE_DEADLINE_DATAPICKER': {
+        draft.updateDate.deadline = action.payload.deadline;
         break;
       }
       default:

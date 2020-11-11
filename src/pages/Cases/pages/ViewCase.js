@@ -123,7 +123,7 @@ function ViewCase(props) {
       </ButtonContainer>
       <Container>
         <Grid justify="space-around" container spacing={3}>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -136,7 +136,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -149,7 +149,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -162,7 +162,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -175,7 +175,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -188,7 +188,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -201,7 +201,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -214,7 +214,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -227,7 +227,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -240,7 +240,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -253,7 +253,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -266,7 +266,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -293,7 +293,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -306,7 +306,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"
@@ -319,7 +319,7 @@ function ViewCase(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <TextField
               variant="outlined"
               size="small"

@@ -4,7 +4,6 @@ import { Form } from '@rocketseat/unform';
 import Grid from '@material-ui/core/Grid';
 import { Container, ButtonContainer } from './styles';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -237,6 +236,9 @@ export default function _02_part(props) {
 
             <ButtonContainer>
               <Grid className="buttonContainer" item xs={12}>
+                <button className="buttonDefault" icon="back" onClick={back}>
+                  Voltar
+                </button>
                 <button className="buttonDefault" icon="right" type="submit">
                   Próximo
                 </button>

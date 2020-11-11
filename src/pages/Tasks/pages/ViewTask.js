@@ -102,7 +102,7 @@ function ViewTask(props) {
       </ButtonContainer>
       <Container>
         <Grid justify="space-around" container spacing={3}>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -115,7 +115,7 @@ function ViewTask(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -128,11 +128,13 @@ function ViewTask(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               size="small"
               name="description"
+              multiline
+              rows={3}
               disabled={isDisabled}
               onChange={handleChange('description')}
               value={state.description}
@@ -141,7 +143,7 @@ function ViewTask(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -154,7 +156,7 @@ function ViewTask(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -167,7 +169,7 @@ function ViewTask(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"

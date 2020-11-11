@@ -105,7 +105,7 @@ function ViewDocument(props) {
       </ButtonContainer>
       <Container>
         <Grid justify="space-around" container spacing={3}>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -118,7 +118,7 @@ function ViewDocument(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -131,7 +131,7 @@ function ViewDocument(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -144,7 +144,7 @@ function ViewDocument(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -157,7 +157,7 @@ function ViewDocument(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -170,7 +170,7 @@ function ViewDocument(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"
@@ -183,7 +183,7 @@ function ViewDocument(props) {
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               size="small"

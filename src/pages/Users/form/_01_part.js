@@ -139,7 +139,7 @@ const _01_part = (props) => {
       <Container>
         <Form onSubmit={saveAndContinue}>
           <Grid justify="space-around" container spacing={3}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -151,7 +151,7 @@ const _01_part = (props) => {
               <FormHelperText>{nameError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -164,7 +164,7 @@ const _01_part = (props) => {
               <FormHelperText>{emailError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -178,7 +178,7 @@ const _01_part = (props) => {
               <FormHelperText>{passwordError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <FormControl>
                 <InputLabel id="demo-customized-select-label">
                   Tipo de Vínculo
@@ -199,7 +199,7 @@ const _01_part = (props) => {
             </Grid>
 
             {Boolean(isIntern) && (
-              <Grid item xs={4}>
+              <Grid item xs={12} sm={6} md={4}>
                 <TextField
                   variant="outlined"
                   size="small"
@@ -211,7 +211,7 @@ const _01_part = (props) => {
               </Grid>
             )}
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -222,7 +222,7 @@ const _01_part = (props) => {
               />
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -235,7 +235,7 @@ const _01_part = (props) => {
               <FormHelperText>{rgError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -248,7 +248,7 @@ const _01_part = (props) => {
               <FormHelperText>{cpfError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField
                 variant="outlined"
                 size="small"

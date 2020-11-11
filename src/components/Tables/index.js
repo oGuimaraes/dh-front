@@ -23,6 +23,10 @@ const useStyles1 = makeStyles((theme) => ({
     flexShrink: 0,
     marginLeft: theme.spacing(2.5),
   },
+  tableCell: {
+    paddingRight: 4,
+    paddingLeft: 5,
+  },
 }));
 
 function TablePaginationActions(props) {
@@ -114,6 +118,7 @@ const headerRow = {
 
 export default function DefaultTable(props) {
   const rows = [];
+  console.log(props.data);
 
   props.data.map((item) => rows.push(item));
 

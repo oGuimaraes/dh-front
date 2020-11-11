@@ -14,7 +14,7 @@ export default function Documents(props) {
   /* Fazer requisição e setar data com os valores obtidos */
   useEffect(() => {
     async function loadUsers() {
-      await api.get('/documents/').then((res) => setData(res.data));
+      await api.get('/documents/').then((res) => setData(res.data.results));
     }
     loadUsers();
   }, []);
@@ -28,15 +28,12 @@ export default function Documents(props) {
   ];
 
   /* Declarar nome dos atributos que irão no header */
-  const attributesToView = [
-    'type',
-    'prepared_by',
-    'date',
-    'recipients',
-  ];
+  const attributesToView = ['type', 'prepared_by', 'date', 'recipients'];
 
   let mode = useSelector((state) => state.view.mode);
-  let documentSelected = useSelector((state) => state.documents.documentSelected);
+  let documentSelected = useSelector(
+    (state) => state.documents.documentSelected
+  );
 
   let PageContent, Header;
 

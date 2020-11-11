@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import Table from '../../components/Tables';
 import api from '../../services/api';
 import { selectTask } from '../../store/modules/task/actions';
+import Grid from '@material-ui/core/Grid';
 
 export default function Tasks(props) {
   const [data, setData] = useState([]);
@@ -14,7 +15,7 @@ export default function Tasks(props) {
   /* Fazer requisição e setar data com os valores obtidos */
   useEffect(() => {
     async function loadUsers() {
-      await api.get('/tasks/').then((res) => setData(res.data));
+      await api.get('/tasks/').then((res) => setData(res.data.results));
     }
     loadUsers();
   }, []);
@@ -38,11 +39,13 @@ export default function Tasks(props) {
     }
     case 'table': {
       PageContent = (
-        <Table
-          data={data}
-          info={{ header, orderBy: 'id', attributesToView }}
-          action={selectTask}
-        />
+        <Grid item xs={12}>
+          <Table
+            data={data}
+            info={{ header, orderBy: 'id', attributesToView }}
+            action={selectTask}
+          />
+        </Grid>
       );
       Header = <HeaderPage title="Tarefas" viewMode button />;
       break;

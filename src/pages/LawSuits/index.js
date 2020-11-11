@@ -14,7 +14,7 @@ export default function LawSuits(props) {
   /* Fazer requisição e setar data com os valores obtidos */
   useEffect(() => {
     async function loadUsers() {
-      await api.get('/law_suits/').then((res) => setData(res.data));
+      await api.get('/law_suits/').then((res) => setData(res.data.results));
     }
     loadUsers();
   }, []);
@@ -23,7 +23,7 @@ export default function LawSuits(props) {
   const header = [
     'Número do Processo',
     'Tipo de Ação',
-    '"Mandado de prisão em aberto',
+    'Mandado de prisão em aberto',
     'Comarca',
   ];
 
@@ -61,7 +61,9 @@ export default function LawSuits(props) {
       PageContent = <ViewLawSuit />;
       Header = (
         <HeaderPage
-          title={lawSuitSelected ? `Processo ${lawSuitSelected.law_suit_number}` : ''}
+          title={
+            lawSuitSelected ? `Processo ${lawSuitSelected.law_suit_number}` : ''
+          }
           viewMode
           button
         />
