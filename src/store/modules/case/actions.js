@@ -47,6 +47,13 @@ export function updateAdvisors(advisors) {
   };
 }
 
+export function updateAxes(axes) {
+  return {
+    type: '@case/UPDATE_AXES',
+    payload: { axes },
+  };
+}
+
 export function updateInterns(interns) {
   return {
     type: '@case/UPDATE_INTERNS',
@@ -58,5 +65,47 @@ export function updateAssistedPerson(assistedPerson) {
   return {
     type: '@case/UPDATE_ASSISTED_PERSON',
     payload: { assistedPerson },
+  };
+}
+
+export function updateLawSuit(lawSuits) {
+  return {
+    type: '@case/UPDATE_LAW_SUIT',
+    payload: { lawSuits },
+  };
+}
+
+export function updateTask(tasks) {
+  return {
+    type: '@case/UPDATE_TASK',
+    payload: { tasks },
+  };
+}
+
+export function updateDocuments(documents) {
+  return {
+    type: '@case/UPDATE_DOCUMENTS',
+    payload: { documents },
+  };
+}
+
+export function updateEntities(entities) {
+  return {
+    type: '@case/UPDATE_ENTITIES',
+    payload: { entities },
+  };
+}
+
+export function updateSolutionDate(solutionDate) {
+  return {
+    type: '@case/UPDATE_SOLUTION_DATE',
+    payload: { solutionDate },
+  };
+}
+
+export function updateRegistrationDate(registrationDate) {
+  return {
+    type: '@case/UPDATE_REGISTRATION_DATE',
+    payload: { registrationDate },
   };
 }

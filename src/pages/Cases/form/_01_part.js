@@ -7,6 +7,7 @@ import { createCaseRequest } from '../../../store/modules/case/actions';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputAutoComplete from '../../../components/InputAutocomplete';
 import { withRouter } from 'react-router-dom';
+import Datapicker from '../../../components/Datapicker';
 
 /* Imports Select Default */
 import { withStyles } from '@material-ui/core/styles';
@@ -23,6 +24,13 @@ import {
   updateAdvisors,
   updateInterns,
   updateAssistedPerson,
+  updateLawSuit,
+  updateTask,
+  updateAxes,
+  updateDocuments,
+  updateEntities,
+  updateRegistrationDate,
+  updateSolutionDate,
 } from '../../../store/modules/case/actions';
 
 /* Input Styling */
@@ -57,20 +65,42 @@ const _01_part = (props) => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     const err = validate();
     if (!err) {
-      props.values.intern = interns;
-      props.values.advisor = advisors;
-      console.log('teste');
-      dispatch(createCaseRequest(values));
+      values.intern = interns;
+      values.advisor = advisors;
+      values.tasks = tasks;
+      values.law_suits = lawSuits;
+      values.documents = documents;
+      values.entities = entities;
+      values.axis = axis;
+      values.registration_date = registrationDate;
+      values.solution_date = solutionDate ? solutionDate : null;
+      values.assisted_person = assistedPerson;
+      console.log(values);
+      //dispatch(createCaseRequest(values));
     }
   };
 
   /* Get values in Redux for advisors and intern */
 
-  const advisors = useSelector((state) => state.cases.newCase.advisors);
-  const interns = useSelector((state) => state.cases.newCase.interns);
+  const advisors = useSelector((state) => state.cases.caseSelected.advisor);
+  const interns = useSelector((state) => state.cases.caseSelected.intern);
+  const tasks = useSelector((state) => state.cases.caseSelected.tasks);
+  const axis = useSelector((state) => state.cases.caseSelected.axis);
+  const documents = useSelector((state) => state.cases.caseSelected.documents);
+  const lawSuits = useSelector((state) => state.cases.caseSelected.law_suits);
+  const entities = useSelector((state) => state.cases.caseSelected.entities);
+  const assistedPerson = useSelector(
+    (state) => state.cases.caseSelected.assisted_person
+  );
+  const registrationDate = useSelector(
+    (state) => state.cases.caseSelected.registration_date
+  );
+  const solutionDate = useSelector(
+    (state) => state.cases.caseSelected.solution_date
+  );
 
   /* Validation errors setState */
 
@@ -79,12 +109,12 @@ const _01_part = (props) => {
   const [internError, setInternError] = useState('');
   const [reportError, setReportError] = useState('');
   const [registrationDateError, setRegistrationDateError] = useState('');
-  const [axiesError, setAxesError] = useState('');
+  const [axisError, setAxisError] = useState('');
 
   const validate = () => {
     console.log(values);
     let hasError = false;
-    if (values.related_areas.length === 0) {
+    if (values.related_areas?.length === 0) {
       hasError = true;
       setRelatedAreasError('Obrigatório o preenchimento.');
     } else setRelatedAreasError('');
@@ -104,15 +134,15 @@ const _01_part = (props) => {
       setReportError('Obrigatório o preenchimento.');
     } else setReportError('');
 
-    if (values.registration_date.length === 0) {
+    if (registrationDate.length === 0) {
       hasError = true;
       setRegistrationDateError('Obrigatório o preenchimento.');
     } else setRegistrationDateError('');
 
-    if (values.axis.length === 0) {
+    if (axis.length === 0) {
       hasError = true;
-      setAxesError('Obrigatório o preenchimento.');
-    } else setAxesError('');
+      setAxisError('Obrigatório o preenchimento.');
+    } else setAxisError('');
 
     return hasError;
   };
@@ -136,15 +166,20 @@ const _01_part = (props) => {
   ];
 
   const [users, setUsers] = useState([{ name: '', id: 0 }]);
-  const [axes, setAxes] = useState([{ name: '', id: 0 }]);
-  const [assistedPerson, setAssistedPerson] = useState([{ name: '', id: 0 }]);
+  const [assistedPersonState, setAssistedPersonState] = useState([
+    { name: '', id: 0 },
+  ]);
+  const [tasksState, setTasksState] = useState([{ name: '', id: 0 }]);
+  const [axisState, setAxisState] = useState([{ name: '', id: 0 }]);
+  const [lawSuitsState, setLawSuitsState] = useState([{ name: '', id: 0 }]);
+  const [documentsState, setDocumentsState] = useState([{ name: '', id: 0 }]);
+  const [entitiesState, setEntitiesState] = useState([{ name: '', id: 0 }]);
 
-  /* Get all users e axes, envia apenas os dados necessários */
+  /* Get all users e axis, envia apenas os dados necessários */
   useEffect(() => {
     const infoUsers = [];
     const infoPeople = [];
-    const intern = [];
-    const advisors = [];
+
     async function loadUsers() {
       await api.get('/accounts/').then(
         (res) =>
@@ -163,19 +198,46 @@ const _01_part = (props) => {
             const cleanPerson = { name: person.full_name, id: person.id };
             infoPeople.push(cleanPerson);
           }),
-        setAssistedPerson(infoPeople)
+        setAssistedPersonState(infoPeople)
       );
     }
 
     async function getAxes() {
-      await api.get('/axes/').then((res) => setAxes(res.data.results));
+      await api.get('/axes/').then((res) => setAxisState(res.data.results));
     }
 
+    async function getTasks() {
+      await api.get('/tasks/').then((res) => setTasksState(res.data.results));
+    }
+
+    async function getLawSuits() {
+      await api
+        .get('/law_suits/')
+        .then((res) => setLawSuitsState(res.data.results));
+    }
+
+    async function getDocuments() {
+      await api.get('/documents/').then((res) => {
+        res.data.results.map((document) => {
+          document.idString = document.id + '';
+        });
+        setDocumentsState(res.data.results);
+      });
+    }
+
+    async function getEntities() {
+      await api
+        .get('/entities/')
+        .then((res) => setEntitiesState(res.data.results));
+    }
     loadUsers();
     getAxes();
     loadPeople();
+    getTasks();
+    getLawSuits();
+    getDocuments();
+    getEntities();
   }, []);
-
   return (
     <>
       <Container>
@@ -210,12 +272,12 @@ const _01_part = (props) => {
             <Grid item xs={12} sm={6}>
               <InputAutoComplete
                 label={'Pessoa Assistida'}
-                data={assistedPerson}
+                data={assistedPersonState}
                 id={'id'}
                 value={'name'}
                 dispatchAction={updateAssistedPerson}
               />
-              <FormHelperText>{internError}</FormHelperText>
+              <FormHelperText>{}</FormHelperText>
             </Grid>
 
             <Grid item xs={12} sm={6}>
@@ -241,35 +303,17 @@ const _01_part = (props) => {
             </Grid>
 
             <Grid item xs={12} sm={6}>
-              <FormControl>
-                <InputLabel id="demo-customized-select-label">Eixo</InputLabel>
-                <Select
-                  labelId="demo-customized-select-label"
-                  id="demo-customized-select"
-                  value={values.axis}
-                  name="axis"
-                  onChange={props.handleChange('axis')}
-                  input={<BootstrapInput />}
-                  inputProps={{
-                    renderValue: (option) => option.name,
-                  }}
-                >
-                  {axes.map((axis, index) => {
-                    return (
-                      <MenuItem
-                        key={index}
-                        value={{ name: axis.name, id: axis.id }}
-                      >
-                        {axis.name}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-              </FormControl>
-              <FormHelperText>{axiesError}</FormHelperText>
+              <InputAutoComplete
+                label={'Eixos'}
+                data={axisState}
+                id={'id'}
+                value={'name'}
+                dispatchAction={updateAxes}
+              />
+              <FormHelperText>{axisError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={12} sm={6} className="centerGrid">
+            <Grid item xs={12} sm={6} className="brotherOfAutoselect">
               <TextField
                 variant="outlined"
                 size="small"
@@ -317,37 +361,34 @@ const _01_part = (props) => {
             </Grid>
 
             <Grid item xs={12} sm={6} md={4}>
-              <TextField
-                variant="outlined"
-                size="small"
-                name="law_suits"
-                onChange={props.handleChange('law_suits')}
-                value={values.law_suits}
-                label="Processos"
+              <InputAutoComplete
+                label={'Processos'}
+                data={lawSuitsState}
+                id={'id'}
+                value={'law_suit_number'}
+                dispatchAction={updateLawSuit}
               />
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
             <Grid item xs={12} sm={6} md={4}>
-              <TextField
-                variant="outlined"
-                size="small"
-                name="tasks"
-                onChange={props.handleChange('tasks')}
-                value={values.tasks}
-                label="Tarefas"
+              <InputAutoComplete
+                label={'Tarefas'}
+                data={tasksState}
+                id={'id'}
+                value={'title'}
+                dispatchAction={updateTask}
               />
               <FormHelperText>{}</FormHelperText>
             </Grid>
 
             <Grid item xs={12} sm={6} md={4}>
-              <TextField
-                variant="outlined"
-                size="small"
-                name="documents"
-                onChange={props.handleChange('documents')}
-                value={values.documents}
-                label="Documentos"
+              <InputAutoComplete
+                label={'Documentos'}
+                data={documentsState}
+                id={'id'}
+                value={'idString'}
+                dispatchAction={updateDocuments}
               />
               <FormHelperText>{}</FormHelperText>
             </Grid>
@@ -367,38 +408,28 @@ const _01_part = (props) => {
             </Grid>
 
             <Grid item xs={12} sm={6} md={4}>
-              <TextField
-                variant="outlined"
-                size="small"
-                name="entities"
-                onChange={props.handleChange('entities')}
-                value={values.entities}
-                label="Entidades"
+              <InputAutoComplete
+                label={'Entidades'}
+                data={entitiesState}
+                id={'id'}
+                value={'name'}
+                dispatchAction={updateEntities}
               />
             </Grid>
 
-            <Grid item xs={12} sm={6} md={4}>
-              <TextField
-                variant="outlined"
-                size="small"
-                name="registration_date"
-                onChange={props.handleChange('registration_date')}
-                value={values.registration_date}
+            <Grid item xs={12} sm={6} md={4} className="brotherOfAutoselect">
+              <Datapicker
                 label="Data de Cadastro"
+                dispatchAction={updateRegistrationDate}
               />
               <FormHelperText>{registrationDateError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={4}>
-              <TextField
-                variant="outlined"
-                size="small"
-                name="solution_date"
-                onChange={props.handleChange('solution_date')}
-                value={values.solution_date}
+            <Grid item xs={12} sm={6} md={4} className="brotherOfAutoselect">
+              <Datapicker
                 label="Data de Solução"
+                dispatchAction={updateSolutionDate}
               />
-              <FormHelperText>{}</FormHelperText>
             </Grid>
           </Grid>
           <ButtonContainer>

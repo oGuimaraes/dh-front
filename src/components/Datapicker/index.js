@@ -34,7 +34,7 @@ export default function DatePickers(props) {
 
   const dateNow = new Date();
   const formatedData = formatDate(dateNow);
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(props.defaultValue);
 
   const dispatch = useDispatch();
 
@@ -47,7 +47,8 @@ export default function DatePickers(props) {
         id="date"
         label={label}
         type="date"
-        defaultValue={formatedData}
+        disabled={props.disabled}
+        defaultValue={props.defaultValue}
         onChange={(event) => {
           setDate(event.target.value);
         }}

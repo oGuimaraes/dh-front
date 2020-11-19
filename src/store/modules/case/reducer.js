@@ -11,18 +11,28 @@ const INITIAL_STATE = {
     report: '',
     registration_date: null,
     solution_date: null,
-    documents: '',
-    tasks: '',
-    law_suits: '',
-    entities: '',
-    intern: '',
-    advisor: '',
-    assted_person: '',
-    axis: '',
+    documents: [],
+    tasks: [],
+    law_suits: [],
+    entities: [],
+    intern: [],
+    advisor: [],
+    assisted_person: [],
+    axis: [],
   },
   newCase: {
     advisors: [],
-    interns: [],
+    intern: [],
+    axes: [],
+    assistedPerson: [],
+    lawSuits: [],
+    tasks: [],
+    documents: [],
+    entities: [],
+  },
+  updateDate: {
+    solution: '',
+    registration: '',
   },
 };
 
@@ -54,15 +64,43 @@ export default function cases(state = INITIAL_STATE, action) {
         break;
       }
       case '@case/UPDATE_ADVISORS': {
-        draft.newCase.advisors = action.payload.advisors;
+        draft.caseSelected.advisor = action.payload.advisors;
         break;
       }
       case '@case/UPDATE_INTERNS': {
-        draft.newCase.interns = action.payload.interns;
+        draft.caseSelected.intern = action.payload.interns;
+        break;
+      }
+      case '@case/UPDATE_AXES': {
+        draft.caseSelected.axis = action.payload.axes;
         break;
       }
       case '@case/UPDATE_ASSISTED_PERSON': {
-        draft.newCase.assistedPerson = action.payload.assistedPerson;
+        draft.caseSelected.assisted_person = action.payload.assistedPerson;
+        break;
+      }
+      case '@case/UPDATE_LAW_SUIT': {
+        draft.caseSelected.law_suits = action.payload.lawSuits;
+        break;
+      }
+      case '@case/UPDATE_TASK': {
+        draft.caseSelected.tasks = action.payload.tasks;
+        break;
+      }
+      case '@case/UPDATE_DOCUMENTS': {
+        draft.caseSelected.documents = action.payload.documents;
+        break;
+      }
+      case '@case/UPDATE_ENTITIES': {
+        draft.caseSelected.entities = action.payload.entities;
+        break;
+      }
+      case '@case/UPDATE_SOLUTION_DATE': {
+        draft.caseSelected.solution_date = action.payload.solutionDate;
+        break;
+      }
+      case '@case/UPDATE_REGISTRATION_DATE': {
+        draft.caseSelected.registration_date = action.payload.registrationDate;
         break;
       }
       case '@case/DELETE_CASE': {

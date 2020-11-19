@@ -12,6 +12,9 @@ export default function HeaderPage(props) {
     TypeButton = <Button icon="add" text="Cadastrar" linkTo="form" />;
   else if (mode === 'form' || mode === 'view')
     TypeButton = <Button text="Voltar" icon="left" linkTo="table" />;
+  if (props.noButton) {
+    TypeButton = null;
+  }
 
   return (
     <Container>

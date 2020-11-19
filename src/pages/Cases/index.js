@@ -10,13 +10,17 @@ import { selectCase } from '../../store/modules/case/actions';
 
 export default function Cases(props) {
   const [data, setData] = useState([]);
+  const [account, setAccount] = useState({});
+
+  const { id: userId } = useSelector((state) => state.auth.user);
 
   /* Fazer requisição e setar data com os valores obtidos */
   useEffect(() => {
-    async function loadUsers() {
+    async function loadCases() {
       await api.get('/cases/').then((res) => setData(res.data.results));
+      await api.get(`/accounts/${userId}/`).then((res) => setAccount(res.data));
     }
-    loadUsers();
+    loadCases();
   }, []);
 
   /* Declarar valores que irão no header */
@@ -29,10 +33,10 @@ export default function Cases(props) {
 
   /* Declarar nome dos atributos que irão no header */
   const attributesToView = [
-    'id',
-    'daj_advisor',
-    'daj_intern',
-    'registration_date',
+    '$.id',
+    '$.advisor[*].name',
+    '$.intern[*].name',
+    '$.registration_date',
   ];
 
   let mode = useSelector((state) => state.view.mode);
@@ -50,7 +54,14 @@ export default function Cases(props) {
       PageContent = (
         <Table
           data={data}
-          info={{ header, orderBy: 'id', attributesToView }}
+          info={{
+            header,
+            orderBy: 'id',
+            attributesToView,
+            isAdmin: account.is_superuser,
+            axis: account.axis,
+            useFilter: true
+          }}
           action={selectCase}
         />
       );

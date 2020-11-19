@@ -165,10 +165,8 @@ export default createGlobalStyle`
   }
   
   .brotherOfAutoselect{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end !important;
-    margin-top: 9px !important;
+    margin-top: 7px !important;
+    width: 100%;
   }
 
   .MuiOutlinedInput-multiline {
@@ -197,5 +195,26 @@ export default createGlobalStyle`
 
   .imIwjr svg {
     font-size: 16px;
+  }
+
+  .MuiSelect-select.Mui-disabled {
+    background-color: #96beca !important;
+    border: 1px #898989 solid;
+  }
+
+  .disabled  span {
+    color: #174048;
+  }
+
+  .etDGsl {
+    height: 36px !important;
+  }
+
+  .phrases{
+    font-size: 20px;
+    font-style: italic;
+    text-align: center;
+    color: #0c515e;
+    margin-top: 60px;
   }
 `;

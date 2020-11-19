@@ -10,14 +10,17 @@ import { selectPerson } from '../../store/modules/people/actions';
 
 export default function People() {
   const [data, setData] = useState([]);
+  const [account, setAccount] = useState({});
+
+  const { id: userId } = useSelector((state) => state.auth.user);
 
   useEffect(() => {
     async function loadPeople() {
       await api.get('/people/').then((res) => setData(res.data.results));
+      await api.get(`/accounts/${userId}/`).then((res) => setAccount(res.data));
     }
     loadPeople();
   }, []);
-  console.log(data);
 
   const header = [
     'Nome Completo',
@@ -50,7 +53,14 @@ export default function People() {
       PageContent = (
         <Table
           data={data}
-          info={{ header, orderBy: 'full_name', attributesToView }}
+          info={{
+            header,
+            orderBy: 'full_name',
+            attributesToView,
+            isAdmin: account.is_superuser,
+            axis: account.axis,
+            useFilter: true
+          }}
           action={selectPerson}
         />
       );

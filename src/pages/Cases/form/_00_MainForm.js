@@ -6,14 +6,14 @@ class MainForm extends Component {
   state = {
     step: 1,
     case_number: null,
-    related_areas: [],
+    related_areas: '',
     reference_contacts: '',
     daj_number: '',
-    daj_advisor: 2,
-    daj_intern: 1,
+    daj_advisor: '',
+    daj_intern: '',
     report: '',
-    registration_date: '2020-10-01',
-    solution_date: '2020-10-01',
+    registration_date: '',
+    solution_date: null,
     documents: [],
     tasks: [],
     law_suits: [],
@@ -39,8 +39,6 @@ class MainForm extends Component {
   };
 
   handleChange = (input) => (event) => {
-    console.log('input:', input);
-    console.log('event.value:', event.target.value);
     this.setState({ [input]: event.target.value });
   };
 

@@ -24,7 +24,7 @@ export function* createCaseRequest({ payload }) {
       intern,
       advisor,
       assited_person,
-      axis,
+      axes,
     } = payload.values;
 
     const response = yield call(api.post, 'cases/', {
@@ -43,7 +43,7 @@ export function* createCaseRequest({ payload }) {
       intern,
       advisor,
       assited_person,
-      axis,
+      axes,
     });
 
     console.log(response);
@@ -76,7 +76,7 @@ export function* editCaseRequest({ payload }) {
       entities,
       intern,
       advisor,
-      assited_person,
+      assisted_person,
       axis,
       id,
     } = payload.caseSelected;
@@ -96,7 +96,7 @@ export function* editCaseRequest({ payload }) {
       entities,
       intern,
       advisor,
-      assited_person,
+      assisted_person,
       axis,
       id,
     });

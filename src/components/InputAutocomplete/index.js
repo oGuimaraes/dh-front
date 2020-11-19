@@ -17,21 +17,28 @@ const Label = styled('label')`
 const InputWrapper = styled('div')`
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.25);
-  background-color: #a2cfdc;
+  background-color: #c7e3ea;
   border-radius: 4px;
   display: flex;
   flex-wrap: wrap;
 
-  &:hover {
-    border-color: #40a9ff;
+  &:hover:not(.disabled) {
+    border-color: rgba(0, 0, 0, 0.87);
   }
-  &.focused {
-    border-color: #40a9ff;
-    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+
+  &.focused:not(.disabled) {
+    border-color: rgba(0, 0, 0, 0.87);
+    border-width: 2px;
   }
-  & input {
+
+  &.disabled {
+    background-color: rgba(50, 50, 50, 0.1) !important;
+  }
+
+  & #customized-hook-demo {
+    background-color: initial !important;
     font-size: 14px;
-    height: 28px;
+    height: 36px;
     box-sizing: border-box;
     padding: 4px 6px;
     width: 0;
@@ -51,16 +58,20 @@ const Tag = styled(({ label, onDelete, ...props }) => (
 ))`
   display: flex;
   align-items: center;
-  height: 24px;
   margin: 2px;
   line-height: 22px;
-  background-color: #fafafa;
-  border: 1px solid #e8e8e8;
+  background-color: #f0f0f0;
+  border: 1px solid #e0e0e0;
   border-radius: 2px;
   box-sizing: content-box;
   padding: 0 4px 0 10px;
   outline: 0;
   overflow: hidden;
+  &.disabled {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+  }
   &:focus {
     border-color: #40a9ff;
     background-color: #e6f7ff;
@@ -71,7 +82,7 @@ const Tag = styled(({ label, onDelete, ...props }) => (
     text-overflow: ellipsis;
   }
   & svg {
-    font-size: 12px;
+    font-size: 18px;
     cursor: pointer;
     padding: 4px;
   }
@@ -122,7 +133,7 @@ export default function InputAutocomplete(props) {
     setInputWidth(ref.current ? ref.current.offsetWidth : 0);
   }, [ref.current]);
 
-  const { data } = props;
+  const { data, defaultValue, isDisabled } = props;
   const importantValue = props.value;
 
   const {
@@ -138,7 +149,7 @@ export default function InputAutocomplete(props) {
     setAnchorEl,
   } = useAutocomplete({
     id: 'customized-hook-demo',
-    defaultValue: [],
+    defaultValue,
     multiple: true,
     options: data,
     getOptionLabel: (option) => option[importantValue],
@@ -154,13 +165,19 @@ export default function InputAutocomplete(props) {
           <Label {...getInputLabelProps()}>{props.label}</Label>
           <InputWrapper
             ref={(setAnchorEl, ref)}
-            className={focused ? 'focused' : ''}
+            className={`${focused ? 'focused' : ''} ${
+              isDisabled ? 'disabled' : ''
+            }`}
           >
             {value.map((option, index) => (
-              <Tag label={option[importantValue]} {...getTagProps({ index })} />
+              <Tag
+                label={option[importantValue]}
+                className={`${isDisabled ? 'disabled' : ''}`}
+                {...getTagProps({ index })}
+              />
             ))}
 
-            <input {...getInputProps()} />
+            <input disabled={isDisabled} {...getInputProps()} />
           </InputWrapper>
         </div>
         {groupedOptions.length > 0 ? (

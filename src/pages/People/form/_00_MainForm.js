@@ -20,7 +20,7 @@ export default class MainForm extends Component {
     mother_name: '8',
     civil_registry: '9',
     civil_status: '',
-    schooling: '',
+    schooling: '25',
     rg: '10',
     cpf: '11',
     cnh: '12',
@@ -30,7 +30,7 @@ export default class MainForm extends Component {
     gender_identity: '',
     preferred_pronouns: '16',
     self_identification: '17',
-    birthday: '',
+    birthday: '26',
     birth_city: '18',
     birth_state: '19',
     has_health_problem: false,
@@ -43,10 +43,13 @@ export default class MainForm extends Component {
     related_case_bond: '',
     related_law_suit_bond: '',
     related_person: '',
-    contact_address: '',
+    contact_address: {},
     responsible_advisor: [],
     responsible_intern: [],
     document: [],
+    case_people: [],
+    related_law_suit: [],
+    axis: '',
   };
 
   nextStep = () => {
@@ -114,6 +117,9 @@ export default class MainForm extends Component {
       neighborhood,
       city,
       state,
+      case_people,
+      related_law_suit,
+      axis,
     } = this.state;
 
     const values = {
@@ -158,6 +164,9 @@ export default class MainForm extends Component {
       responsible_advisor,
       responsible_intern,
       document,
+      case_people,
+      related_law_suit,
+      axis,
     };
 
     switch (step) {

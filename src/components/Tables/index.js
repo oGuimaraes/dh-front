@@ -16,7 +16,9 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import { useDispatch } from 'react-redux';
+import jp from 'jsonpath';
 import { changeView } from '../../store/modules/view/actions';
+
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -127,8 +129,7 @@ export default function DefaultTable(props) {
 
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] =
-    qtyData < 5 ? React.useState(qtyData) : React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(Math.min(qtyData, 5));
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -163,15 +164,22 @@ export default function DefaultTable(props) {
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
-          ).map((row) => (
+          ).map((row) => {
+            const useFilter = props.info?.useFilter
+            const isAdmin = props.info?.isAdmin;
+            const userAxis = props.info?.axis?.id;
+            const caseAxis = (row.axis || []).map(e => e.id);
+
+            return (
             <TableRow hover onClick={() => handleClick(row)} key={row.id}>
               {props.info.attributesToView.map((item, index) => (
+                (!useFilter || (isAdmin || caseAxis.includes(userAxis))) &&
                 <TableCell key={index} style={{ width: 160 }} scope="row">
-                  {row[item]}
+                  {jp.query(row, item).join(', ') || 'Não informado'}
                 </TableCell>
               ))}
             </TableRow>
-          ))}
+          )})}
 
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>

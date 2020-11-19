@@ -65,6 +65,22 @@ export default function _02_part(props) {
     props.prevStep();
   };
 
+  const case_bond_choices = [
+    { id: 1, value: 'Assistido' },
+    { id: 2, value: 'Jurisdicionado' },
+    { id: 3, value: 'Atingido' },
+    { id: 4, value: 'Terceiro' },
+    { id: 5, value: 'Interessado' },
+    { id: 6, value: 'Outro' },
+  ];
+
+  const law_suit_choices = [
+    { id: 1, value: 'Parte Autora' },
+    { id: 2, value: 'Parte Ré' },
+    { id: 3, value: 'Terceiro' },
+    { id: 4, value: 'Interessado' },
+  ];
+
   return (
     <>
       <Container>
@@ -80,7 +96,6 @@ export default function _02_part(props) {
                 label="Nome da Mãe"
               />
             </Grid>
-
             <Grid item xs={6}>
               <TextField
                 variant="outlined"
@@ -91,8 +106,7 @@ export default function _02_part(props) {
                 label="Escolaridade"
               />
             </Grid>
-
-            <Grid item xs={6}>
+            <Grid item xs={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -102,8 +116,7 @@ export default function _02_part(props) {
                 label="Data de Nascimento"
               />
             </Grid>
-
-            <Grid item xs={6}>
+            <Grid item xs={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -113,8 +126,7 @@ export default function _02_part(props) {
                 label="Cidade do Nascimento"
               />
             </Grid>
-
-            <Grid item xs={6}>
+            <Grid item xs={4}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -124,7 +136,6 @@ export default function _02_part(props) {
                 label="Estado do Nascimento"
               />
             </Grid>
-
             <Grid item xs={6} className="checkboxSection">
               <span>Possui algum problema de sáude?</span>
               <Checkbox
@@ -133,6 +144,213 @@ export default function _02_part(props) {
                 checked={values.has_health_problem}
                 onChange={props.handleChange('has_health_problem')}
                 inputProps={{ 'aria-label': 'secondary checkbox' }}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="which_health_problem"
+                onChange={props.handleChange('which_health_problem')}
+                value={values.which_health_problem}
+                label="Se sim, qual problema de saúde?"
+              />
+            </Grid>
+
+            <Grid item xs={6} className="checkboxSection">
+              <span>Recebe algum auxílio?</span>
+              <Checkbox
+                defaultChecked
+                color="primary"
+                checked={values.receives_assistance}
+                onChange={props.handleChange('receives_assistance')}
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="which_assistance"
+                onChange={props.handleChange('which_assistance')}
+                value={values.which_assistance}
+                label="Se sim, qual auxílio?"
+              />
+            </Grid>
+
+            <Grid item xs={3}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="case_people"
+                onChange={props.handleChange('case_people')}
+                value={values.case_people}
+                label="Caso Relacionado"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={3}>
+              <FormControl>
+                <InputLabel id="demo-customized-select-label">
+                  Vinculo do caso
+                </InputLabel>
+                <Select
+                  labelId="demo-customized-select-label"
+                  id="demo-customized-select"
+                  value={values.related_case_bond}
+                  name="related_case_bond"
+                  onChange={props.handleChange('related_case_bond')}
+                  input={<BootstrapInput />}
+                >
+                  {case_bond_choices.map((area) => (
+                    <MenuItem value={area.id}>{area.value}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={3}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="related_law_suit"
+                onChange={props.handleChange('related_law_suit')}
+                value={values.related_law_suit}
+                label="Processo Relacionado"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={3}>
+              <FormControl>
+                <InputLabel id="demo-customized-select-label">
+                  Vinculo do processo
+                </InputLabel>
+                <Select
+                  labelId="demo-customized-select-label"
+                  id="demo-customized-select"
+                  value={values.law_suit_choices}
+                  name="law_suit_choices"
+                  onChange={props.handleChange('law_suit_choices')}
+                  input={<BootstrapInput />}
+                >
+                  {law_suit_choices.map((area) => (
+                    <MenuItem value={area.id}>{area.value}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={4}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="related_person"
+                onChange={props.handleChange('related_person')}
+                value={values.related_person}
+                label="Pessoa Relacionada"
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="contact_email"
+                onChange={props.handleChange('contact_email')}
+                value={values.contact_email}
+                label="Email (Pessoa Relacionada)"
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="contact_phone"
+                onChange={props.handleChange('contact_phone')}
+                value={values.contact_phone}
+                label="Telefone (Pessoa Relacionada)"
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="contact_phone"
+                onChange={props.handleChange('contact_phone')}
+                value={values.contact_phone}
+                label="Rua (Pessoa Relacionada)"
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="contact_phone"
+                onChange={props.handleChange('contact_phone')}
+                value={values.contact_phone}
+                label="Numero (Pessoa Relacionada)"
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="contact_phone"
+                onChange={props.handleChange('contact_phone')}
+                value={values.contact_phone}
+                label="Complemento (Pessoa Relacionada)"
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="contact_phone"
+                onChange={props.handleChange('contact_phone')}
+                value={values.contact_phone}
+                label="Bairro (Pessoa Relacionada)"
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="contact_phone"
+                onChange={props.handleChange('contact_phone')}
+                value={values.contact_phone}
+                label="Cidade (Pessoa Relacionada)"
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="contact_phone"
+                onChange={props.handleChange('contact_phone')}
+                value={values.contact_phone}
+                label="Estado (Pessoa Relacionada)"
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="contact_phone"
+                onChange={props.handleChange('contact_phone')}
+                value={values.contact_phone}
+                label="Documento Relacionado"
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              <TextField
+                variant="outlined"
+                size="small"
+                name="axis"
+                onChange={props.handleChange('axis')}
+                value={values.axis}
+                label="Eixo"
               />
             </Grid>
 
