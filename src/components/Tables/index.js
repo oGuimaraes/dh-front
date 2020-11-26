@@ -19,7 +19,6 @@ import { useDispatch } from 'react-redux';
 import jp from 'jsonpath';
 import { changeView } from '../../store/modules/view/actions';
 
-
 const useStyles1 = makeStyles((theme) => ({
   root: {
     flexShrink: 0,
@@ -119,8 +118,8 @@ const headerRow = {
 };
 
 export default function DefaultTable(props) {
+  console.log(('Dados', props.data));
   const rows = [];
-  console.log(props.data);
 
   props.data.map((item) => rows.push(item));
 
@@ -165,21 +164,29 @@ export default function DefaultTable(props) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => {
-            const useFilter = props.info?.useFilter
+            const useFilter = props.info?.useFilter;
             const isAdmin = props.info?.isAdmin;
-            const userAxis = props.info?.axis?.id;
-            const caseAxis = (row.axis || []).map(e => e.id);
+            let userAxis = props.info.axis;
+            if (props.info.axis != null) userAxis = props.info.axis[0].id;
+            //const userAxis = props.info?.axis[0]?.id;
+            let caseAxis = (row.axis || []).map((e) => e.id);
 
             return (
-            <TableRow hover onClick={() => handleClick(row)} key={row.id}>
-              {props.info.attributesToView.map((item, index) => (
-                (!useFilter || (isAdmin || caseAxis.includes(userAxis))) &&
-                <TableCell key={index} style={{ width: 160 }} scope="row">
-                  {jp.query(row, item).join(', ') || 'Não informado'}
-                </TableCell>
-              ))}
-            </TableRow>
-          )})}
+              <TableRow hover onClick={() => handleClick(row)} key={row.id}>
+                {props.info.attributesToView.map(
+                  (item, index) =>
+                    (!useFilter ||
+                      isAdmin ||
+                      caseAxis.includes(userAxis) ||
+                      props.info.livre) && (
+                      <TableCell key={index} style={{ width: 160 }} scope="row">
+                        {jp.query(row, item).join(', ') || 'Não informado'}
+                      </TableCell>
+                    )
+                )}
+              </TableRow>
+            );
+          })}
 
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>

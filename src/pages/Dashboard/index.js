@@ -17,17 +17,43 @@ export default function Dashboard(props) {
   /* Fazer requisição e setar data com os valores obtidos */
   useEffect(() => {
     async function loadTasks() {
-      await api.get('/tasks/').then((res) => setData(res.data.results));
+      const taskUser = [];
+      await api.get('/tasks/').then((res) => {
+        //setData(res.data.results);
+        res.data.results.map((task) => {
+          task.deadline_formated = format(task.deadline);
+          task.responsible.map((responsible) => {
+            if (responsible.id == userId) taskUser.push(task);
+          });
+        });
+        setData(taskUser);
+      });
+      console.log(data);
       await api.get(`/accounts/${userId}/`).then((res) => setAccount(res.data));
     }
     loadTasks();
   }, []);
 
+  function format(inputDate) {
+    var date = new Date(inputDate);
+    if (!isNaN(date.getTime())) {
+      // Months use 0 index.
+      return (
+        date.getDate() + 1 + '/' + date.getMonth() + '/' + date.getFullYear()
+      );
+    }
+  }
+
   /* Declarar valores que irão no header */
   const header = ['Número da Tarefa', 'Titulo', 'Prazo', 'Casos'];
 
   /* Declarar nome dos atributos que irão no header */
-  const attributesToView = ['$.id', '$.title', '$.deadline', '$.cases[*].id'];
+  const attributesToView = [
+    '$.id',
+    '$.title',
+    '$.deadline_formated',
+    '$.cases[*].id',
+  ];
 
   let mode = useSelector((state) => state.view.mode);
   let taskSelected = useSelector((state) => state.tasks.taskSelected);
@@ -41,7 +67,7 @@ export default function Dashboard(props) {
           <h2 className="phrases">
             {frases[Math.floor(Math.random() * frases.length)]}
           </h2>
-          <HeaderPage title="Minhas Tarefas" viewMode button />
+          <HeaderPage title="Minhas Tarefas" viewMode noButton />
           <Table
             data={data}
             info={{
@@ -51,6 +77,7 @@ export default function Dashboard(props) {
               isAdmin: account.is_superuser,
               axis: account.axis,
               useFilter: true,
+              livre: true,
             }}
             action={selectTask}
           />
@@ -64,7 +91,7 @@ export default function Dashboard(props) {
       PageContent = <ViewTask />;
       Header = (
         <HeaderPage
-          title={taskSelected ? `Caso ${taskSelected.id}` : ''}
+          title={taskSelected ? `Tarefa ${taskSelected.id}` : ''}
           viewMode
           button
         />

@@ -61,11 +61,14 @@ export function* createUserRequest({ payload }) {
 
     yield put(createUserSuccess(user));
     toast.error('Usuário criado com sucesso.');
-    history.push('/dashboard');
+    history.push('/usuarios');
+    setTimeout(function () {
+      window.location.reload(false);
+    }, 2500);
     // Ajust it //
     //window.location.reload(false);
   } catch (err) {
-    toast.error('Falha na Criação, verifique seus dados.');
+    toast.error('Falha na Criação, verifique os dados.');
   }
 }
 
@@ -128,6 +131,10 @@ export function* editUserRequest({ payload }) {
       yield put(saveAuthenticatedUser(authenticatedUser));
     }*/
     toast.error('Usuário editado com sucesso.');
+    history.push('/usuarios');
+    setTimeout(function () {
+      window.location.reload(false);
+    }, 2500);
   } catch (err) {
     console.log(err);
     toast.error('Falha na edição, verifique seus dados.');
@@ -137,9 +144,14 @@ export function* editUserRequest({ payload }) {
 export function* deleteUser({ payload }) {
   try {
     const { id } = payload;
-    console.log(payload);
     yield call(api.delete, `accounts/${id}/`);
+
     toast.error(`Usuário deletado(a) com sucesso`);
+
+    history.push('/usuarios');
+    setTimeout(function () {
+      window.location.reload(false);
+    }, 2500);
   } catch (err) {
     console.log(err);
     toast.error('Falha ao deletar usuário, verifique seus dados.');

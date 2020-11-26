@@ -59,7 +59,7 @@ export default function People() {
             attributesToView,
             isAdmin: account.is_superuser,
             axis: account.axis,
-            useFilter: true
+            useFilter: true,
           }}
           action={selectPerson}
         />

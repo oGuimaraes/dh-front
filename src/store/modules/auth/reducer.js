@@ -22,6 +22,7 @@ const INITIAL_STATE = {
     is_active: '',
     scholarship: '',
     scholarship_type: '',
+    is_superuser: '',
   },
 };
 

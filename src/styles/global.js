@@ -157,6 +157,10 @@ export default createGlobalStyle`
     background: #c7e3ea !important
   }
 
+  .notificationContainer {
+    background: rgba(0, 0, 0, 0.8) !important;
+  }
+
 
   .align-flexend {
     display: flex;

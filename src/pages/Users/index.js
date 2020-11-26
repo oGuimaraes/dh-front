@@ -27,6 +27,8 @@ export default function Users(props) {
   /* Declarar nome dos atributos que irão no header */
   const attributesToView = ['name', 'email', 'cpf', 'rg', 'id'];
 
+  const myUser = useSelector((state) => state.auth.user);
+
   let PageContent, Header;
   switch (mode) {
     case 'form': {
@@ -42,7 +44,12 @@ export default function Users(props) {
           action={selectUser}
         />
       );
-      Header = <HeaderPage title="Usuários" viewMode button />;
+      if (myUser.is_superuser) {
+        Header = <HeaderPage title="Usuários" viewMode button />;
+      } else {
+        Header = <HeaderPage title="Usuários" viewMode noButton />;
+      }
+
       break;
     }
     case 'view': {

@@ -12,7 +12,7 @@ class MainForm extends Component {
     daj_advisor: '',
     daj_intern: '',
     report: '',
-    registration_date: '',
+    registration_date: '01',
     solution_date: null,
     documents: [],
     tasks: [],

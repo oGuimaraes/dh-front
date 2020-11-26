@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Container from '../../../components/Container';
@@ -14,6 +14,13 @@ import {
 } from '../../../store/modules/task/actions';
 import Dialog from '../../../components/Dialog';
 import { withRouter } from 'react-router-dom';
+import InputAutoComplete from '../../../components/InputAutocomplete';
+
+import { updateResponsible } from '../../../store/modules/task/actions';
+
+/* Imports Select Default */
+
+import api from '../../../services/api';
 
 function ViewTask(props) {
   const aTask = useSelector((state) => state.tasks.taskSelected);
@@ -54,7 +61,10 @@ function ViewTask(props) {
   const handleSubmitEdit = (e) => {
     const err = validate();
     if (!err) {
-      dispatch(editTaskRequest(state));
+      const values = { ...state };
+      values.responsible = aTask.responsible;
+      console.log(values);
+      dispatch(editTaskRequest(values));
     }
   };
 
@@ -92,6 +102,32 @@ function ViewTask(props) {
       </>
     );
   }
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    async function loadUsers() {
+      await api
+        .get('/accounts/')
+        .then((res) =>
+          setAllResponsibleState(
+            res.data.results
+              .map(({ id, name }) => ({ id, name }))
+              .sort((a, b) => a.name.localeCompare(b.name))
+          )
+        );
+    }
+
+    loadUsers();
+  }, []);
+
+  const responsibleState = aTask.responsible
+    .map(({ id, name }) => ({ id, name }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  const [allResponsibleState, setAllResponsibleState] = useState([
+    { name: '', id: 0 },
+  ]);
 
   return (
     <>
@@ -144,19 +180,21 @@ function ViewTask(props) {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <TextField
-              variant="outlined"
-              size="small"
-              name="responsible"
-              disabled={isDisabled}
-              onChange={handleChange('responsible')}
-              value={state.responsible}
-              label="Responsável (MtM tipo bloquinho)"
+            <InputAutoComplete
+              label={'Responsável'}
+              isDisabled={isDisabled}
+              defaultValue={responsibleState}
+              data={allResponsibleState.filter(
+                (o) => !responsibleState.find((o2) => o.id === o2.id)
+              )}
+              id={'id'}
+              value={'name'}
+              dispatchAction={updateResponsible}
             />
             <FormHelperText>{}</FormHelperText>
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} className="brotherOfAutoselect">
             <TextField
               variant="outlined"
               size="small"
@@ -164,7 +202,7 @@ function ViewTask(props) {
               disabled={isDisabled}
               onChange={handleChange('documents')}
               value={state.documents}
-              label="Documentos (MtM tipo bloquinho)"
+              label="Documentos"
             />
             <FormHelperText>{}</FormHelperText>
           </Grid>
@@ -177,7 +215,7 @@ function ViewTask(props) {
               disabled={isDisabled}
               onChange={handleChange('cases')}
               value={state.cases}
-              label="Casos (MtM tipo bloquinho)"
+              label="Casos"
             />
             <FormHelperText>{}</FormHelperText>
           </Grid>

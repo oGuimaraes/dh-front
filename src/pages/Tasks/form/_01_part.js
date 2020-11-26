@@ -59,9 +59,13 @@ const _01_part = (props) => {
 
   /* Get the values ​​of the State's Selects and Datapicker (Redux) */
 
-  const responsible = useSelector((state) => state.tasks.newTask.responsible);
-  const documentsState = useSelector((state) => state.tasks.newTask.documents);
-  const casesState = useSelector((state) => state.tasks.newTask.cases);
+  const responsible = useSelector(
+    (state) => state.tasks.taskSelected.responsible
+  );
+  const documentsState = useSelector(
+    (state) => state.tasks.taskSelected.documents
+  );
+  const casesState = useSelector((state) => state.tasks.taskSelected.cases);
   const datapickerState = useSelector(
     (state) => state.tasks.updateDate.deadline
   );

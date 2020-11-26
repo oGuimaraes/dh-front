@@ -21,6 +21,8 @@ export function* signIn({ payload }) {
     const responseUser = yield call(api.get, 'auth/users/me/');
     let authenticatedUser = responseUser.data;
 
+    const { data } = yield call(api.get, `accounts/${authenticatedUser.id}`);
+
     if (responseUser.address) {
       const addressUser = yield call(
         api.get,
@@ -30,7 +32,7 @@ export function* signIn({ payload }) {
     }
 
     yield put(signInSuccess(token));
-    yield put(saveAuthenticatedUser(authenticatedUser));
+    yield put(saveAuthenticatedUser(data));
 
     history.push('/dashboard');
 

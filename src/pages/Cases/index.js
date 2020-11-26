@@ -17,11 +17,27 @@ export default function Cases(props) {
   /* Fazer requisição e setar data com os valores obtidos */
   useEffect(() => {
     async function loadCases() {
-      await api.get('/cases/').then((res) => setData(res.data.results));
+      await api.get('/cases/').then((res) =>
+        res.data.results.map((aCase) => {
+          aCase.registration_date_formated = format(aCase.registration_date);
+          setData(res.data.results);
+        })
+      );
+
       await api.get(`/accounts/${userId}/`).then((res) => setAccount(res.data));
     }
     loadCases();
   }, []);
+
+  function format(inputDate) {
+    var date = new Date(inputDate);
+    if (!isNaN(date.getTime())) {
+      // Months use 0 index.
+      return (
+        date.getDate() + 1 + '/' + date.getMonth() + '/' + date.getFullYear()
+      );
+    }
+  }
 
   /* Declarar valores que irão no header */
   const header = [
@@ -36,7 +52,7 @@ export default function Cases(props) {
     '$.id',
     '$.advisor[*].name',
     '$.intern[*].name',
-    '$.registration_date',
+    '$.registration_date_formated',
   ];
 
   let mode = useSelector((state) => state.view.mode);
@@ -60,7 +76,7 @@ export default function Cases(props) {
             attributesToView,
             isAdmin: account.is_superuser,
             axis: account.axis,
-            useFilter: true
+            useFilter: true,
           }}
           action={selectCase}
         />

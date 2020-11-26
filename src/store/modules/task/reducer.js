@@ -46,7 +46,7 @@ export default function tasks(state = INITIAL_STATE, action) {
         break;
       }
       case '@task/UPDATE_RESPONSIBLE': {
-        draft.newTask.responsible = action.payload.responsible;
+        draft.taskSelected.responsible = action.payload.responsible;
         break;
       }
       case '@task/UPDATE_DOCUMENTS': {

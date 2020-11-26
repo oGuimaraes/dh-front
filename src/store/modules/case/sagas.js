@@ -51,8 +51,10 @@ export function* createCaseRequest({ payload }) {
     const { aCase } = response.data;
 
     yield put(createCaseSuccess(aCase));
-    console.log('History:');
     toast.error('Caso criado com sucesso.');
+    setTimeout(function () {
+      window.location.reload(false);
+    }, 2500);
   } catch (err) {
     toast.error('Falha na Criação, verifique os dados.');
   }
@@ -105,6 +107,9 @@ export function* editCaseRequest({ payload }) {
     yield put(editCaseSuccess(aCase));
 
     toast.error('Caso editado com sucesso.');
+    setTimeout(function () {
+      window.location.reload(false);
+    }, 2500);
   } catch (err) {
     console.log(err);
     toast.error('Falha na edição, verifique seus dados.');
@@ -114,10 +119,10 @@ export function* editCaseRequest({ payload }) {
 export function* deleteCase({ payload }, props) {
   try {
     yield call(api.delete, `cases/${payload.id}/`);
-    /*setTimeout(function () {
+    setTimeout(function () {
       window.location.reload(true);
-    }, 1500);
-    */
+    }, 2500);
+
     toast.error(`Caso ${payload.id} deletado(a) com sucesso`);
   } catch (err) {
     console.log(err);

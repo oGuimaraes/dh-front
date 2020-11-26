@@ -19,6 +19,8 @@ import Dialog from '../../../components/Dialog';
 import { withRouter } from 'react-router-dom';
 
 function ViewUser(props) {
+  const myUser = useSelector((state) => state.auth.user);
+  console.log(myUser);
   const user = useSelector((state) => state.user.userSelected);
   const dispatch = useDispatch();
 
@@ -111,14 +113,14 @@ function ViewUser(props) {
     } else {
       setEmailError('');
     }
-
-    /* Bond Type validation */
+    /*
     if (state.bond_type.length === 0) {
       isError = true;
       setBondTypeError('Tipo de vínculo é obrigatório');
     } else {
       setBondTypeError('');
     }
+    */
 
     if (state.rg.length === 0) {
       isError = true;
@@ -147,14 +149,6 @@ function ViewUser(props) {
     const err = validate();
     if (!err) {
       dispatch(editUserRequest(state));
-
-      /** When updating your own user in users, update header
-       *
-       * const authenticatedUser = useSelector((state) => state.auth.user);
-       * if (state.id == authenticatedUser.id) {
-       *   dispatch(saveAuthenticatedUser(state));
-       * }
-       */
     }
   };
 
@@ -171,7 +165,7 @@ function ViewUser(props) {
 
   let buttonAreaContent;
 
-  if (isDisabled) {
+  if (isDisabled && myUser.is_superuser) {
     buttonAreaContent = (
       <Button
         className="buttonDefault"
@@ -180,7 +174,7 @@ function ViewUser(props) {
         clickEvent={handleEdit}
       ></Button>
     );
-  } else {
+  } else if (myUser.is_superuser) {
     buttonAreaContent = (
       <>
         <Button

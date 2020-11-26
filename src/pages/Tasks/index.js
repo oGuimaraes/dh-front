@@ -11,25 +11,48 @@ import Grid from '@material-ui/core/Grid';
 
 export default function Tasks(props) {
   const [data, setData] = useState([]);
+  const { id: userId } = useSelector((state) => state.auth.user);
 
   /* Fazer requisição e setar data com os valores obtidos */
   useEffect(() => {
     async function loadUsers() {
-      await api.get('/tasks/').then((res) => setData(res.data.results));
+      await api.get('/tasks/').then((res) =>
+        res.data.results.map((task) => {
+          task.deadline_formated = format(task.deadline);
+          setData(res.data.results);
+        })
+      );
+      await api.get(`/accounts/${userId}/`).then((res) => setAccount(res.data));
     }
     loadUsers();
   }, []);
+
+  function format(inputDate) {
+    var date = new Date(inputDate);
+    if (!isNaN(date.getTime())) {
+      // Months use 0 index.
+      return (
+        date.getDate() + 1 + '/' + date.getMonth() + '/' + date.getFullYear()
+      );
+    }
+  }
 
   /* Declarar valores que irão no header */
   const header = ['Título', 'Prazo', 'Responsável', 'Casos'];
 
   /* Declarar nome dos atributos que irão no header */
-  const attributesToView = ['title', 'deadline', 'responsible.id', 'cases'];
+  const attributesToView = [
+    'title',
+    'deadline_formated',
+    'responsible.id',
+    'cases',
+  ];
 
   let mode = useSelector((state) => state.view.mode);
   let taskSelected = useSelector((state) => state.tasks.taskSelected);
 
   let PageContent, Header;
+  const [account, setAccount] = useState({});
 
   switch (mode) {
     case 'form': {
@@ -42,7 +65,12 @@ export default function Tasks(props) {
         <Grid item xs={12}>
           <Table
             data={data}
-            info={{ header, orderBy: 'id', attributesToView }}
+            info={{
+              header,
+              orderBy: 'id',
+              attributesToView,
+              //axis: account.axis.id,
+            }}
             action={selectTask}
           />
         </Grid>
@@ -54,7 +82,9 @@ export default function Tasks(props) {
       PageContent = <ViewTask />;
       Header = (
         <HeaderPage
-          title={taskSelected ? `Tarefa ${taskSelected.id}` : ''}
+          title={
+            taskSelected ? `${taskSelected.title}  | Nº${taskSelected.id}` : ''
+          }
           viewMode
           button
         />

@@ -112,13 +112,13 @@ export default function Profile(props) {
       setEmailError('');
     }
 
-    /* Bond Type validation */
-    if (state.bond_type.length === 0) {
-      isError = true;
-      setBondTypeError('Tipo de vínculo é obrigatório');
-    } else {
-      setBondTypeError('');
-    }
+    // /* Bond Type validation */
+    // if (state.bond_type.length === 0) {
+    //   isError = true;
+    //   setBondTypeError('Tipo de vínculo é obrigatório');
+    // } else {
+    //   setBondTypeError('');
+    // }
 
     if (state.rg.length === 0) {
       isError = true;

@@ -5,7 +5,7 @@ import Part3 from './_03_ part';
 
 class MainForm extends Component {
   state = {
-    step: 2,
+    step: 1,
     name: '',
     email: '',
     bond_type: '',

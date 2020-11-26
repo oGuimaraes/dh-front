@@ -13,11 +13,26 @@ export default function Documents(props) {
 
   /* Fazer requisição e setar data com os valores obtidos */
   useEffect(() => {
-    async function loadUsers() {
-      await api.get('/documents/').then((res) => setData(res.data.results));
+    async function loadDocuments() {
+      await api.get('/documents/').then((res) =>
+        res.data.results.map((aDocument) => {
+          aDocument.date_formated = format(aDocument.date);
+          setData(res.data.results);
+        })
+      );
     }
-    loadUsers();
+    loadDocuments();
   }, []);
+
+  function format(inputDate) {
+    var date = new Date(inputDate);
+    if (!isNaN(date.getTime())) {
+      // Months use 0 index.
+      return (
+        date.getDate() + 1 + '/' + date.getMonth() + '/' + date.getFullYear()
+      );
+    }
+  }
 
   /* Declarar valores que irão no header */
   const header = [
@@ -28,7 +43,12 @@ export default function Documents(props) {
   ];
 
   /* Declarar nome dos atributos que irão no header */
-  const attributesToView = ['type', 'prepared_by', 'date', 'recipients'];
+  const attributesToView = [
+    'type',
+    'prepared_by',
+    'date_formated',
+    'recipients',
+  ];
 
   let mode = useSelector((state) => state.view.mode);
   let documentSelected = useSelector(

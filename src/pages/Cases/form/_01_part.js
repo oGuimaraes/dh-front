@@ -79,7 +79,7 @@ const _01_part = (props) => {
       values.solution_date = solutionDate ? solutionDate : null;
       values.assisted_person = assistedPerson;
       console.log(values);
-      //dispatch(createCaseRequest(values));
+      dispatch(createCaseRequest(values));
     }
   };
 
@@ -134,7 +134,7 @@ const _01_part = (props) => {
       setReportError('Obrigatório o preenchimento.');
     } else setReportError('');
 
-    if (registrationDate.length === 0) {
+    if (values.registration_date.length === 0) {
       hasError = true;
       setRegistrationDateError('Obrigatório o preenchimento.');
     } else setRegistrationDateError('');

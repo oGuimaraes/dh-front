@@ -13,8 +13,8 @@ import {
 
 export default function Notifications() {
   const notifications = useSelector((state) => state.notifications);
-  const { hasUnread, notification } = notifications;
-
+  let { hasUnread, notification } = notifications;
+  const [unread, setRead] = useState(false);
   const [visible, setVisible] = useState(false);
 
   function handleToggleVisible() {
@@ -27,7 +27,7 @@ export default function Notifications() {
         <MdNotifications color="#0387b3" size={20} />
       </Badge>
 
-      <NotificationList visible={visible}>
+      <NotificationList className="notificationContainer" visible={visible}>
         <Scroll>
           {hasUnread ? (
             <Notification unread>

@@ -63,7 +63,10 @@ export function* editTaskRequest({ payload }) {
     });
 
     const aTask = response.data;
+    console.log(aTask);
+
     yield put(editTaskSuccess(aTask));
+    yield put(emmitPublish(aTask.id));
 
     toast.error('Tarefa editado com sucesso.');
   } catch (err) {
@@ -90,6 +93,7 @@ export function* emmitPublishSaga(value) {
   const { taskID } = value.payload;
   try {
     yield call(api.get, `tasks/${taskID}/publish/`);
+    yield call(api.get, `tasks/${taskID}/retract/`);
   } catch (err) {
     console.log(err);
     toast.error('Error');
