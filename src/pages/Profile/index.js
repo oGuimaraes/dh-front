@@ -301,7 +301,7 @@ export default function Profile(props) {
               <FormHelperText>{cpfError}</FormHelperText>
             </Grid>
 
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={12}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -318,7 +318,7 @@ export default function Profile(props) {
               <div style={{ borderBottom: '1px #d1e1e6 dashed' }} />
             </Grid>
 
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={12} sm={12}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -407,7 +407,7 @@ export default function Profile(props) {
               <div style={{ borderBottom: '1px #d1e1e6 dashed' }} />
             </Grid>
 
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={12} sm={12}>
               <TextField
                 variant="outlined"
                 size="small"
